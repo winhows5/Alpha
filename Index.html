@@ -41,6 +41,7 @@
         }
         
         h2 {
+            position: relative;
             color: #999;
             font-weight: normal;
             font-size: 15px;
@@ -49,13 +50,9 @@
             left: 3px;
         }
         
-        h1,
-        h2 {
-            position: relative;
-        }
-        
         p {
-            font-size: 14px;
+            font-family: Cursive;
+            font-size: 24px;
             line-height: 2em;
             margin: 0;
             letter-spacing: 2px;
@@ -102,15 +99,13 @@
     <div id="wrapper">
         <h1>winhows5</h1>
         <h2>Live and love.</h2>
-        <p><a href="http://blog.evanyou.me" target="_blank">projects</a></p>
-        <p>
-            <a href="https://twitter.com/youyuxi" target="_blank"></a>
-        </p>
+        <p><a href="http://blog.evanyou.me" target="_blank">Projects</a></p>
+        <p><a href="" target="_blank">About me</a></p>
         <p><a href="https://github.com/winhows5/winhows5.github.io" target="_blank">Github</a></p>
     </div>
     <canvas></canvas>
     <script>
-        document.addEventListener('mouseover', function(e) {
+        document.addEventListener('touchmove', function(e) {
             e.preventDefault()
         })
         var c = document.getElementsByTagName('canvas')[0],
@@ -128,7 +123,7 @@
         c.width = w * pr
         c.height = h * pr
         x.scale(pr, pr)
-        x.globalAlpha = 0.6
+        x.globalAlpha = 0.4
 
         function i() {
             x.clearRect(0, 0, w, h)
@@ -139,30 +134,54 @@
                 x: 0,
                 y: h * .7 - f
             }]
-            while (q[1].x < w + f) d(q[0], q[1])
+            while (q[1].x < w) d(q[0], q[1])
         }
 
         function d(i, j) {
             x.beginPath()
             x.moveTo(i.x, i.y)
             x.lineTo(j.x, j.y)
-            var k = j.x + (z() * 2 - 0.25) * f,
-                n = y(j.y)
-            x.lineTo(k, n)
+            var k = point(i, j)
+            x.lineTo(k.x, k.y)
             x.closePath()
-            r -= u / -50
+            r += u / 50
             x.fillStyle = '#' + (v(r) * 127 + 128 << 16 | v(r + u / 3) * 127 + 128 << 8 | v(r + u / 3 * 2) * 127 + 128).toString(16)
             x.fill()
+                // x.strokeStyle = '#' + (v(r) * 127 + 128 << 16 | v(r + u / 3) * 127 + 128 << 8 | v(r + u / 3 * 2) * 127 + 128).toString(16)
+                // x.stroke()
             q[0] = q[1]
             q[1] = {
-                x: k,
-                y: n
+                x: k.x,
+                y: k.y
+            }
+        }
+
+        function point(i, j) {
+            xx = j.x + (z() * 2 - 0.25) * f
+            yy = y(j.y)
+
+            la = m.sqrt(m.pow((xx - i.x), 2) + m.pow((yy - i.y), 2))
+            lb = m.sqrt(m.pow((xx - j.x), 2) + m.pow((yy - j.y), 2))
+            lc = m.sqrt(m.pow((j.x - i.x), 2) + m.pow((j.y - i.y), 2))
+
+            return ang(la, lb, lc) || square(i, j, xx, yy) ? point(i, j) : {
+                x: xx,
+                y: yy
             }
         }
 
         function y(p) {
             var t = p + (z() * 2 - 1.1) * f
-            return (t > h || t < 0) ? y(p) : t
+            return (t > h * .8 || t < 0) ? y(p) : t
+        }
+
+        function ang(la, lb, lc) {
+            return (m.abs((m.pow(la, 2) + m.pow(lb, 2) - m.pow(lc, 2)) / (2 * la * lb))) > 0.992
+        }
+
+        function square(i, j, xx, yy) {
+            S = 1 / 2 * m.abs(i.x * j.y + i.y * xx + j.x * yy - i.x * yy - i.y * j.x - xx * j.y)
+            return S < 100
         }
         document.onclick = i
         document.ontouchstart = i

@@ -3,7 +3,13 @@
 ## Change log
 ---
 
-### V0.1 The beginning
+### V0.15 Triangles -improved
+1. 减少了背景浮动几何形状的扁平化概率，以及走势趋下的概率
+- Key Points:
+
+    执行方案：调整三角形的最小面积，并调整角的最小弧度
+
+### V0.1 Triangles
 1. 根据[Even You](http://evanyou.me)的页面js学习生成背景浮动几何的数学方法
 - Key Points:
 
