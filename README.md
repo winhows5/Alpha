@@ -5,13 +5,14 @@
 ### v0.2 2017／08／17 bolgs
 1. 添加了以往项目的blog链接
 
+
 ### V0.15 2017／08／16 Triangles -improved
 1. 减少了背景浮动几何形状的扁平化概率，以及走势趋下的概率
 - Key Points:
 
     调整三角形的最小面积，并调整角的最小弧度。
     注意：如果仅调整角的最小弧度，会有很大概率迭代至超过cpu计算能力。其原因很容易理解：当角所对的边长较短时，为了保证角大于一定的角度，则另外两边的长度有很大概率小于对角边；而且这一趋势是正反馈的，很容易耗尽计算能力。<br>
-    <img src="/sources/angle_mistake1.png", width=300, height=200, alt="angle_mistake1">
+    <img src="https://github.com/winhows5/winhows5.github.io/blob/master/sources/angle_mistake1.png", width=300, height=200, alt="angle_mistake1">
     <img src="/sources/angle_mistake2.png", width=300, height=200, alt="angle_mistake2">
     <br>
     而如果仅调整三角形的最小面积，则容易出现“狭长”三角形的极端结果。
