@@ -26,5 +26,4 @@
     3. 检测是否到达边界，如果为否，则`q0 = q1， q1 = q2`，重复循环；如果到达边界则结束。<br>
     
     随机颜色填充：<br>
-    使用三个不同相的`cos`函数生成rgb的数值，如图：
-    ![color](/sources/colorful.png)
+	使用三个不同相的`cos`函数生成rgb的数值，如图：![color](/sources/colorful.png)
