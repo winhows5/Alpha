@@ -29,4 +29,5 @@
     
     随机颜色填充：<br>
     使用三个不同相的`cos`函数生成rgb的数值，示例如下图：
-![color](/sources/colorful.png)
+    
+    ![color](/sources/colorful.png)
